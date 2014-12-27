@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
   def setup
-    @base_title = "Ruby on Rails Tutorial Sample App"
+    @base_title = "Ideas App"
   end
 
    def home
