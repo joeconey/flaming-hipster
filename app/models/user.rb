@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
                                    dependent:   :destroy
   has_many :following, through: :active_relationships,  source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
+  has_many :votes, dependent:   :destroy
 
 attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
@@ -98,6 +99,25 @@ attr_accessor :remember_token, :activation_token, :reset_token
   # Returns true if the current user is following the other user.
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  def voting?(micropost_id, user_id)
+      truth = Vote.where("user_id = :user_id and micropost_id = :micropost_id", user_id: user_id, micropost_id:micropost_id).count
+      if truth == 0
+        return false
+      else
+        return true
+      end
+  end
+
+  # Votes.
+  def vote(micropost)
+    votes.create(micropost_id: micropost.id)
+  end
+
+  # Unvotes.
+  def unvote(vote)
+    Vote.find_by(id: vote.id).destroy
   end
 
   # Returns a user's status feed.

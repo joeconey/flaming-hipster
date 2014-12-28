@@ -2,7 +2,7 @@
   <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
   <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
   <span class="title"><%= micropost.title %></span>
-  <span class="content"><%= micropost.content %></span>
+  <span class="content"><%= truncate(micropost.content, length: 17, separator: ' ') %></span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(micropost.created_at) %> ago.
     <% if current_user?(micropost.user) %>
@@ -11,4 +11,12 @@
     <% end %>
   </span>
   <span class="link"><%= link_to "View idea", micropost_path(micropost.id) %></span>
+  <span class="votes">
+   <strong id="votes-<%= micropost.id %>" class="stat">
+      <%= micropost.votes.count %>
+    </strong>  
+  <%=  "vote".pluralize(micropost.votes.count) %>
+</span>
+     <%= render :partial => 'microposts/vote_form', :locals => { :micropost_id => micropost.id } if logged_in? %>
+</span>
 </li>

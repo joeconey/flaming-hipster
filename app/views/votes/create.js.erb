@@ -1,0 +1,2 @@
+$("#vote_form-<%=@micropost.id%>").html("<%= escape_javascript(render :partial => 'microposts/unvote', :locals => { :micropost_id => @micropost.id }) %>")
+$("#votes-<%= @micropost.id %>").html('<%= @micropost.votes.count %>')

@@ -1,6 +1,22 @@
 class MicropostsController < ApplicationController
-  before_action :logged_in_user, only: [:create, :destroy]
+  before_action :logged_in_user, only: [:create, :destroy, :new]
   before_action :correct_user,   only: :destroy
+
+def new
+    @micropost = Micropost.new
+    @possible_content = request.GET
+    @possible_content.each do |key, value|
+      if key=="content"
+        @final_content = value
+        @micropost.content = value
+      end
+      if key=="title"
+        @final_title = value
+        @micropost.title = value
+      end
+    end
+
+end
 
   def create
     @micropost = current_user.microposts.build(micropost_params)

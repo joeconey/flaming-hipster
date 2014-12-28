@@ -1,0 +1,8 @@
+ 
+  <div id="vote_form-<%=micropost_id%>" class="vote-form">
+  <% if @user.voting?(micropost_id, @user) %>
+    <%= render :partial => 'microposts/unvote', :locals => { :micropost_id => micropost_id } %>
+  <% else %>
+    <%= render :partial => 'microposts/vote', :locals => { :micropost_id => micropost_id } %>
+  <% end %>
+  </div>

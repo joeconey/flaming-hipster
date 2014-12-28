@@ -18,7 +18,7 @@ html {
 }
 
 body {
-  padding-top: 60px;
+  padding-top: 50px;
 }
 
 section {
@@ -35,6 +35,9 @@ textarea {
     margin-bottom: 10px;
   }
 }
+
+.top-jumbo{margin-bottom:0px;}
+.jumbo-blue{background-color: #124C8B; color:white;}
 
 /* typography */
 
@@ -306,4 +309,12 @@ span.picture {
 }
 
 
+.idea-content{width:60%; margin-left:20%; text-align:left;}
 
+.vote-form{max-width:300px; margin-left:auto; margin-right:auto;}
+.vote-box{text-align:left;}
+.vote-row{padding-top:25px; border-bottom:1px solid black; padding-bottom:25px; text-align:center;}
+.share-btn{width:300px;}
+
+
+.alert {margin-bottom:0px;}
