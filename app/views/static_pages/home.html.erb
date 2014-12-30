@@ -59,7 +59,13 @@
     </aside>
     <div class="col-md-8">
       <h1>YOUR IDEA FEED</h1>
+        <div class="button-box">
+        <button class="btn btn-primary show-button" id="your-feed-button">Your idea feed</button>
+        <button class="btn btn-primary show-button" id="top-feed-button">Top ideas</button>
+        <br /><br />
+      </div>
       <%= render 'shared/feed' %>
+      <%= render 'shared/top_items' %>
     </div>
   </div>
   </div>
@@ -118,5 +124,38 @@
           </div>
         </div>
       </div>
- 
+
+
+<div class="container">
+  <div class="row"> 
+      <h1>TOP IDEAS</h1>
+      <div class="col-md-6 col-md-offset-3">
+      <%= render 'shared/top_items' %>
+      </div>
+    </div>
+  </div>
 <% end %>
+
+<script>
+$(function() {
+  <% if logged_in? %>
+    //Hide top list
+    $(".top-items-container").hide();  
+<% end %>
+    //Toggle on button click
+    $(".show-button").click(function(){
+
+
+        if ($(this).is("#top-feed-button")){
+                $(".top-items-container").show();
+                $(".feed-items-container").hide();
+        }
+        else{
+                $(".top-items-container").hide();
+                $(".feed-items-container").show();
+        }
+      });
+
+
+});
+</script>

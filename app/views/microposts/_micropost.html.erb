@@ -12,7 +12,7 @@
   </span>
   <span class="link"><%= link_to "View idea", micropost_path(micropost.id) %></span>
   <span class="votes">
-   <strong id="votes-<%= micropost.id %>" class="stat">
+   <strong id="votes-<%= micropost.id %>" class="stat votes-stat">
       <%= micropost.votes.count %>
     </strong>  
   <%=  "vote".pluralize(micropost.votes.count) %>

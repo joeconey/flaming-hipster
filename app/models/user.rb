@@ -129,6 +129,8 @@ attr_accessor :remember_token, :activation_token, :reset_token
   end
 
 
+
+
   private
 
     # Converts email to all lower-case.

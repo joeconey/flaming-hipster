@@ -1,2 +1,16 @@
-$("#vote_form-<%=@micropost.id%>").html("<%= escape_javascript(render :partial => 'microposts/unvote', :locals => { :micropost_id => @micropost.id }) %>")
-$("#votes-<%= @micropost.id %>").html('<%= @micropost.votes.count %>')
+$(".vote-form").each(function(){
+ if ($(this).is("#vote_form-<%=@micropost.id%>")){
+ 		$(this).html("<%= escape_javascript(render :partial => 'microposts/unvote', :locals => { :micropost_id => @micropost.id }) %>");
+ }
+});
+
+$(".votes-stat").each(function(){
+ if ($(this).is("#votes-<%= @micropost.id %>")){
+ 		$(this).html('<%= @micropost.votes.count %>');
+ }
+});
+
+
+
+
+
