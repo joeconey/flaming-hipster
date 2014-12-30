@@ -1,5 +1,11 @@
 <%= form_for(@micropost) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
+
+	 <% if @question %>
+    <div>
+<%= f.hidden_field :question_id, :value => @question.id%>
+    </div>
+    <% end %>
   <div class="field">
     <%= f.text_area :title, placeholder: "Compose new idea..." %>
   </div>

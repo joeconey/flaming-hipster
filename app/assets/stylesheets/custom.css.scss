@@ -287,6 +287,14 @@ input {
     display: block;
     margin-left: 60px;
   }
+    .link {
+    display: block;
+    margin-left: 60px;
+  }
+    .votes {
+    display: block;
+    margin-left: 60px;
+  }
   .gravatar {
     float: left;
     margin-right: 10px;
@@ -321,3 +329,20 @@ span.picture {
 
 .button-box{text-align:center;}
 .show-button{min-width:250px;}
+
+
+.question{margin-bottom:20px;}
+
+.questions-container{text-align:center;}
+
+.navbar-nav{
+  li{
+    a{
+    color:white !important;
+    }
+  }
+
+}
+
+.dropdown-menu{background-color:black;}
+

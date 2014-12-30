@@ -1,0 +1,25 @@
+<% provide(:title, @question.name) %>
+<div class="center jumbotron top-jumbo jumbo-blue">
+   <h1><%= @question.name %></h1>
+  </div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-4">
+			<h1>Add your answer</h1>
+		<section class="micropost_form">
+			<% if logged_in? %>
+        <%= render 'shared/micropost_form'%>
+
+        <% else %>
+        	<a class="btn btn-default share-btn" href="/users/new">Signup to add your voice</a>
+        <% end %>
+
+      </section>
+		</div>
+		<div class="col-md-8">
+			  <ol class="microposts">
+    				<%= render @microposts %>
+  			</ol>
+		</div>
+</div>

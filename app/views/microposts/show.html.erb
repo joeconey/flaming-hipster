@@ -21,6 +21,11 @@
     <section class="follow">
         <%= render 'users/follow_form' if logged_in? %>
     </section>
+    <% if @micropost.question_id != nil %>
+    <section class="question-link">
+      This idea was in response to a question. <a href="/questions/<%= @micropost.question_id %>">Take a look at the question here.</a>
+    </section>
+     <% end %>
   </aside>
   <div class="col-md-8">
     <div class="vote-box">

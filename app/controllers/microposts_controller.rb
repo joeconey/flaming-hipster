@@ -19,14 +19,22 @@ def new
 end
 
   def create
+
     @micropost = current_user.microposts.build(micropost_params)
     if @micropost.save
       flash[:success] = "Idea created!"
-      redirect_to root_url
+        if @micropost.question_id != nil
+          question_redirect = @micropost.question_id 
+          redirect_to "/questions/#{question_redirect}"
+        else
+          redirect_to root_url
+        end
     else
       @feed_items = []
       render 'static_pages/home'
     end
+
+
   end
 
   def show
@@ -43,7 +51,7 @@ end
   private
 
   def micropost_params
-      params.require(:micropost).permit(:title, :content)
+      params.require(:micropost).permit(:title, :content, :question_id)
     end
 
   def correct_user

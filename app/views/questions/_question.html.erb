@@ -1,0 +1,8 @@
+<li id="question-<%= question.id %>" class="question">
+  	<span class="user question"><%= link_to question.name, question %></span>
+  
+<br />
+  <span class="timestamp">
+    Asked <%= time_ago_in_words(question.created_at) %> ago.
+  </span>
+</li>
