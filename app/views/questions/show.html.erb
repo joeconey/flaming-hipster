@@ -6,7 +6,17 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-4">
-			<h1>Add your answer</h1>
+			<section>
+      			<h2>
+        		<a href="<%= following_user_path(@user) %>">
+            <%= gravatar_for @owner %>
+        		<%= @owner.name %>
+          </a>
+      			</h2>
+    	</section>
+    <section>
+			<h1>Add your answer</h1>    
+	</section>
 		<section class="micropost_form">
 			<% if logged_in? %>
         <%= render 'shared/micropost_form'%>
@@ -18,8 +28,53 @@
       </section>
 		</div>
 		<div class="col-md-8">
+            <h1>ANSWERS</h1>
+        <div class="button-box">
+        <button class="btn btn-primary show-button" id="normal-feed-button">Latest Answers</button>
+        <button class="btn btn-primary show-button" id="top-feed-button">Top Answers</button>
+        <br /><br />
+      </div>
+      <% if @microposts.any? %>
+      <div class="feed-items-container">
 			  <ol class="microposts">
     				<%= render @microposts %>
-  			</ol>
+        </ol>
+        <%= will_paginate @microposts %>
+      </div>
+      <% else %>
+      <h2>This question doesn't have any answers yet.</h2>
+      <% end %>
+            <% if @microposts_votes.any? %>
+      <div class="top-items-container">
+        <ol class="microposts">
+            <%= render @microposts_votes %>
+        </ol>
+            <%= will_paginate @microposts_votes %>
 		</div>
+    <% end %>
+  </div>
 </div>
+
+<script>
+$(function() {
+
+    //Hide top list
+    $(".top-items-container").hide();  
+
+    //Toggle on button click
+    $(".show-button").click(function(){
+
+
+        if ($(this).is("#top-feed-button")){
+                $(".top-items-container").show();
+                $(".feed-items-container").hide();
+        }
+        else{
+                $(".top-items-container").hide();
+                $(".feed-items-container").show();
+        }
+      });
+
+
+});
+</script>

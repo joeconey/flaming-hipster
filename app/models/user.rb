@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :votes, dependent:   :destroy
   has_many :questions, dependent:   :destroy
+  has_many :question_permissions, dependent:   :destroy
 
 attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
@@ -125,8 +126,8 @@ attr_accessor :remember_token, :activation_token, :reset_token
   def feed
     following_ids = "SELECT followed_id FROM relationships
                      WHERE  follower_id = :user_id"
-    Micropost.where("user_id IN (#{following_ids})
-                     OR user_id = :user_id", user_id: id)
+    Micropost.where("(user_id IN (#{following_ids})
+                     OR user_id = :user_id) AND question_id is null", user_id: id)
   end
 
 

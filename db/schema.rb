@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141230153328) do
+ActiveRecord::Schema.define(version: 20150102125247) do
 
   create_table "microposts", force: true do |t|
     t.text     "title"
@@ -27,11 +27,23 @@ ActiveRecord::Schema.define(version: 20141230153328) do
   add_index "microposts", ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
   add_index "microposts", ["user_id"], name: "index_microposts_on_user_id"
 
+  create_table "question_permissions", force: true do |t|
+    t.integer  "question_id"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "question_permissions", ["question_id", "user_id"], name: "index_question_permissions_on_question_id_and_user_id", unique: true
+  add_index "question_permissions", ["question_id"], name: "index_question_permissions_on_question_id"
+  add_index "question_permissions", ["user_id"], name: "index_question_permissions_on_user_id"
+
   create_table "questions", force: true do |t|
     t.text     "name"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "private",    default: false
   end
 
   add_index "questions", ["user_id", "created_at"], name: "index_questions_on_user_id_and_created_at"

@@ -1,0 +1,19 @@
+<%= form_for(@question_permission) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+   <% if @question_permission %>
+    <div>
+<%= f.hidden_field :question_id, :value => @question_permission.question_id%>
+    </div>
+    <% end %>
+
+   <br />
+    <div class="field">
+
+      
+       <%= collection_check_boxes(:question_permission, :user_id, User.all, :id, :name) %>
+    
+  </div>
+  <br />
+  <%= f.submit "Post", class: "btn btn-primary" %>
+<% end %>

@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   resources :relationships,       only: [:create, :destroy]
   resources :votes,       only: [:create, :destroy]
   resources :questions
+    resources :question_permissions,       only: [:create, :destroy, :show, :new]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
