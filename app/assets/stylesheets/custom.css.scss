@@ -320,9 +320,10 @@ span.picture {
 .idea-content{width:60%; margin-left:20%; text-align:left;}
 
 .vote-form{max-width:300px; margin-left:auto; margin-right:auto;}
-.vote-box{text-align:left;}
-.vote-row{padding-top:25px; border-bottom:1px solid black; padding-bottom:25px; text-align:center;}
+.vote-box{text-align:left; text-align:center;}
+.vote-row{padding-top:25px; border-top:1px solid black; padding-bottom:25px; text-align:center; margin-top:25px;}
 .share-btn{width:300px;}
+.idea-btn{width:229px;}
 
 
 .alert {margin-bottom:0px;}
@@ -345,4 +346,4 @@ span.picture {
 }
 
 .dropdown-menu{background-color:black;}
-
+.micropost-follow{width:229px;}

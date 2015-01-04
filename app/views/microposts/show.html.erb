@@ -18,7 +18,7 @@
     <section class="stats">
       <%= render 'shared/stats' %>
     </section>
-    <section class="follow">
+    <section class="follow micropost-follow">
         <%= render 'users/follow_form' if logged_in? %>
     </section>
     <% if @micropost.question_id != nil %>
@@ -28,63 +28,54 @@
      <% end %>
   </aside>
   <div class="col-md-8">
-    <div class="vote-box">
-      <div class="row vote-row">
-        <div class="col-md-6">
-         <h3> This idea has 
-         <span class="votes">
-         <span id="votes-<%= @micropost.id %>" class="stat">
-            <%= @micropost.votes.count %>
-          </span>  
-        <%=  "vote".pluralize(@micropost.votes.count) %>
-      </span>
-    </h3>
-      </div>
-        <div class="col-md-6">
-          <% if logged_in? %>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="vote-box">
+
+        
+         <h3>
+             <span class="votes">
+             <span id="votes-<%= @micropost.id %>" class="stat">
+                <%= @micropost.votes.count %>
+              </span>  
+                <%=  "vote".pluralize(@micropost.votes.count) %>
+              </span>
+          </h3>
+      
+
+            <% if logged_in? %>
                <%= render :partial => 'microposts/vote_form', :locals => { :micropost_id => @micropost.id } if logged_in? %>
             <% else %>
-              <a class="btn btn-default share-btn" href="/users/new">Signup to vote for this idea</a>
+              <a class="btn btn-default idea-btn" href="/users/new">Signup to vote for this idea</a>
             <% end %>
-        </div>
+
       </div>
-            <div class="row vote-row">
-        <div class="col-md-6">
-         <h3> Share this on Facebook 
-    </h3>
       </div>
-        <div class="col-md-6">
-                <a class="btn btn-default share-btn" href="https://www.facebook.com/sharer/sharer.php?u=<%= request.original_url  %>">Share on Facebook</a>
+        
+
+        <div class="col-md-4 vote-box">
+              <h3>Share this idea</h3>
+                <a class="btn btn-default idea-btn" href="https://www.facebook.com/sharer/sharer.php?u=<%= request.original_url  %>" target="_blank">Facebook</a><br />
+                <a class="btn btn-default idea-btn" href="https://twitter.com/home?status=<%= @micropost.title %> <%= request.original_url  %>" target="_blank">Twitter</a>
          
-        </div>
       </div>
 
-    <div class="row vote-row">
-        <div class="col-md-6">
-         <h3> Leave feedback
-    </h3>
+        <div class="col-md-4 vote-box">
+         <h3>Fork this idea</h3>
+           <% if logged_in? %>
+             <a class="btn btn-default idea-btn" href="/microposts/new?content=<%=u @micropost.content %>&title=<%=u @micropost.title  %>">Fork & post</a>
+              <% else %>
+              <a class="btn btn-default idea-btn" href="/users/new">Signup to fork this idea</a>
+            <% end %>
       </div>
-        <div class="col-md-6">
+    </div>
+ <div class="row vote-row">
+         <h3> How could this idea be achieved or improved?
+    </h3>
           <section class="comments section">
             COMMENTS SECTION
           </section>
-        </div>
       </div>
-
-      <div class="row vote-row">
-        <div class="col-md-6">
-         <h3> Fork this idea 
-    </h3>
-      </div>
-        <div class="col-md-6">
-           <% if logged_in? %>
-             <a class="btn btn-default share-btn" href="/microposts/new?content=<%=u @micropost.content %>&title=<%=u @micropost.title  %>">Fork & post</a>
-              <% else %>
-              <a class="btn btn-default share-btn" href="/users/new">Signup to fork this idea</a>
-            <% end %>
-        </div>
-      </div>
-
 
   </div>
   </div>

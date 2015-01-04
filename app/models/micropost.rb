@@ -9,8 +9,7 @@ class Micropost < ActiveRecord::Base
 
   def top_feed
     Micropost.find_by_sql("SELECT microposts.*, COUNT(votes.id)
- AS c FROM microposts left join votes ON microposts.id = votes.micropost_id
- GROUP BY microposts.id ORDER BY c,created_at DESC")
+ AS c FROM microposts left join votes ON microposts.id = votes.micropost_id GROUP BY votes.micropost_id ORDER BY c DESC,created_at DESC")
   end
 
   def question_top_feed(question_id)
